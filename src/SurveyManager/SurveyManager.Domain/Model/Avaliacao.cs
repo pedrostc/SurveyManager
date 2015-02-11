@@ -11,7 +11,7 @@ namespace SurveyManager.Domain.Model
         public DateTime DataTermino { get; private set; }
         public Aluno Respondente { get; set; }
         public List<Questao> Questoes { get; private set; }
-        public Dictionary<Questao, int> Respostas { get; private set; }
+        public Dictionary<Questao, int> Respostas { get; set; }
 
         public Avaliacao()
         {

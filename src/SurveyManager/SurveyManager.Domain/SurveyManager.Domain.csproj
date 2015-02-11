@@ -42,11 +42,18 @@
     <Compile Include="Model\Aluno.cs" />
     <Compile Include="Model\Avaliacao.cs" />
     <Compile Include="Model\Questao.cs" />
+    <Compile Include="Model\Resposta.cs" />
+    <Compile Include="Model\RespostaCincoNiveis.cs" />
     <Compile Include="Model\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Administrador.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DAO\" />
+    <Folder Include="Repository\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
