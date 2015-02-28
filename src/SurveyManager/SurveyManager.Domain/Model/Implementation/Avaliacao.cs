@@ -9,7 +9,7 @@ namespace SurveyManager.Domain.Model.Implementation
         public string Proposito { get; set; }
         public DateTime DataInicio { get; private set; }
         public DateTime DataTermino { get; private set; }
-        public Aluno Respondente { get; set; }
+        public List<Aluno> Respondentes { get; set; }
         public List<Questao> Questoes { get; private set; }
         public Dictionary<Questao, int> Respostas { get; set; }
 

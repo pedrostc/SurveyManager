@@ -42,10 +42,12 @@
     <Compile Include="Model\Implementation\Aluno.cs" />
     <Compile Include="Model\Implementation\Avaliacao.cs" />
     <Compile Include="Model\Implementation\Escala.cs" />
+    <Compile Include="Model\Implementation\FormularioResposta.cs" />
     <Compile Include="Model\Implementation\ModelBase.cs" />
     <Compile Include="Model\Implementation\Questao.cs" />
     <Compile Include="Model\Implementation\Resposta.cs" />
-    <Compile Include="Model\Implementation\RespostaCincoNiveis.cs" />
+    <Compile Include="Model\Implementation\RespostaEmBranco.cs" />
+    <Compile Include="Model\Implementation\RespostaValida.cs" />
     <Compile Include="Model\Implementation\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -56,7 +58,8 @@
     <Folder Include="DAO\" />
     <Folder Include="Model\Contract\" />
     <Folder Include="Repository\" />
-    <Folder Include="Services\" />
+    <Folder Include="Services\Contract\" />
+    <Folder Include="Services\Implementation\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
