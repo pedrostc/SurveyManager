@@ -39,19 +39,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Aluno.cs" />
-    <Compile Include="Model\Avaliacao.cs" />
-    <Compile Include="Model\Questao.cs" />
-    <Compile Include="Model\Resposta.cs" />
-    <Compile Include="Model\RespostaCincoNiveis.cs" />
-    <Compile Include="Model\Usuario.cs" />
+    <Compile Include="Model\Implementation\Aluno.cs" />
+    <Compile Include="Model\Implementation\Avaliacao.cs" />
+    <Compile Include="Model\Implementation\Escala.cs" />
+    <Compile Include="Model\Implementation\ModelBase.cs" />
+    <Compile Include="Model\Implementation\Questao.cs" />
+    <Compile Include="Model\Implementation\Resposta.cs" />
+    <Compile Include="Model\Implementation\RespostaCincoNiveis.cs" />
+    <Compile Include="Model\Implementation\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Administrador.cs" />
+    <Compile Include="Model\Implementation\Administrador.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DAO\" />
+    <Folder Include="Model\Contract\" />
     <Folder Include="Repository\" />
     <Folder Include="Services\" />
   </ItemGroup>

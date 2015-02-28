@@ -1,4 +1,4 @@
-﻿namespace SurveyManager.Domain.Model
+﻿namespace SurveyManager.Domain.Model.Implementation
 {
     public class RespostaCincoNiveis : Resposta
     {

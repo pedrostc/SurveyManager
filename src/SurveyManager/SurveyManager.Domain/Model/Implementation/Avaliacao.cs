@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SurveyManager.Domain.Model
+namespace SurveyManager.Domain.Model.Implementation
 {
-    public class Avaliacao
+    public class Avaliacao : ModelBase
     {
         public string Codigo { get; set; }
         public string Proposito { get; set; }

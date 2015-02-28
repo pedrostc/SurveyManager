@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace SurveyManager.Domain.Model
+namespace SurveyManager.Domain.Model.Implementation
 {
-    public abstract class Resposta
+    public abstract class Resposta : ModelBase
     {
         public Questao Questao { get; set; }
         public int Valor { get; private set; }
