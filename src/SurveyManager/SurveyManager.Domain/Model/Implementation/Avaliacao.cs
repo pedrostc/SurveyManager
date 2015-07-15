@@ -9,14 +9,14 @@ namespace SurveyManager.Domain.Model.Implementation
         public string Proposito { get; set; }
         public DateTime DataInicio { get; private set; }
         public DateTime DataTermino { get; private set; }
-        public List<Aluno> Respondentes { get; set; }
         public List<Questao> Questoes { get; private set; }
-        public Dictionary<Questao, int> Respostas { get; set; }
+        public List<FormularioResposta> FormulariosResposta { get; private set; }
+
 
         public Avaliacao()
         {
             Questoes = new List<Questao>();
-            Respostas = new Dictionary<Questao, int>();
+            FormulariosResposta = new List<FormularioResposta>();
         }
 
         public void AdicionarQuestao(Questao questao)
@@ -55,12 +55,12 @@ namespace SurveyManager.Domain.Model.Implementation
         }
         private void ValidarDatasIguais(DateTime dataInicio, DateTime dataTermino)
         {
-            if(dataInicio.CompareTo(dataTermino) == 0) throw new DatasIguaisException();
+            if(dataInicio.Equals(dataTermino)) throw new DatasIguaisException();
         }
 
-        public void AdicionarResposta(Questao questao, int resposta)
+        public void AdicionarFormularioResposta(FormularioResposta formularioResposta)
         {
-            Respostas.Add(questao, resposta);
+            FormulariosResposta.Add(formularioResposta);
         }
     }
 
