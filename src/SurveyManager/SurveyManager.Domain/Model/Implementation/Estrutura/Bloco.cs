@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace SurveyManager.Domain.Model.Implementation
+{
+    public class Bloco : EstruturaBase
+    {
+        public List<Modulo> Modulos { get; set; }
+
+        public Bloco()
+        {
+            Modulos = new List<Modulo>();
+        }
+    }
+}

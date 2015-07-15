@@ -39,7 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Implementation\Aluno.cs" />
+    <Compile Include="Model\Implementation\Estrutura\Bloco.cs" />
+    <Compile Include="Model\Implementation\Estrutura\Curso.cs" />
+    <Compile Include="Model\Implementation\Estrutura\EstruturaBase.cs" />
+    <Compile Include="Model\Implementation\Estrutura\Modulo.cs" />
+    <Compile Include="Model\Implementation\Estrutura\Turma.cs" />
+    <Compile Include="Model\Implementation\Usuario\Aluno.cs" />
     <Compile Include="Model\Implementation\Avaliacao.cs" />
     <Compile Include="Model\Implementation\Escala.cs" />
     <Compile Include="Model\Implementation\FormularioResposta.cs" />
@@ -48,15 +53,16 @@
     <Compile Include="Model\Implementation\Resposta.cs" />
     <Compile Include="Model\Implementation\RespostaEmBranco.cs" />
     <Compile Include="Model\Implementation\RespostaValida.cs" />
-    <Compile Include="Model\Implementation\Usuario.cs" />
+    <Compile Include="Model\Implementation\Usuario\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Implementation\Administrador.cs" />
+    <Compile Include="Model\Implementation\Usuario\Administrador.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DAO\" />
     <Folder Include="Model\Contract\" />
+    <Folder Include="Model\Implementation\Avaliacao\" />
     <Folder Include="Repository\" />
     <Folder Include="Services\Contract\" />
     <Folder Include="Services\Implementation\" />
