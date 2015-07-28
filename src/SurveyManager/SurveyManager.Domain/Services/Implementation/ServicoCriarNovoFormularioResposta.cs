@@ -12,7 +12,6 @@ namespace SurveyManager.Domain.Services.Implementation
         public static void Para(Avaliacao avaliacao)
         {
             FormularioResposta formResposta = new FormularioResposta(avaliacao.Questoes);
-            avaliacao.ad
         }
     }
 }
