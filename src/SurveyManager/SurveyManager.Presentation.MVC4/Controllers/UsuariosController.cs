@@ -83,7 +83,7 @@ namespace SurveyManager.Presentation.MVC4.Controllers
                 UsuarioRep.Adicionar(administrador);
                 UsuarioRep.SalvarTodos();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("ListarAdministrador");
             }
 
             return View(administrador);
