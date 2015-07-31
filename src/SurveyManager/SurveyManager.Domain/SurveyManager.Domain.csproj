@@ -30,8 +30,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Contract\Base\IRepositorio.cs" />
+    <Compile Include="Model\Contract\Base\Repositorio.cs" />
+    <Compile Include="DAO\Shared\Contexto.cs" />
     <Compile Include="Model\Implementation\Estrutura\Bloco.cs" />
     <Compile Include="Model\Implementation\Estrutura\Curso.cs" />
     <Compile Include="Model\Implementation\Estrutura\EstruturaBase.cs" />
@@ -55,6 +69,7 @@
     <Compile Include="Model\Implementation\RespostaValida.cs" />
     <Compile Include="Model\Implementation\Usuario\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\UsuarioRepositorio.cs" />
     <Compile Include="Services\Implementation\ServicoCriaNovaAvaliacao.cs" />
     <Compile Include="Services\Implementation\ServicoCriarNovoFormularioResposta.cs" />
   </ItemGroup>
@@ -62,11 +77,14 @@
     <Compile Include="Model\Implementation\Usuario\Administrador.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DAO\" />
-    <Folder Include="Model\Contract\" />
     <Folder Include="Model\Implementation\Avaliacao\" />
-    <Folder Include="Repository\" />
     <Folder Include="Services\Contract\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
