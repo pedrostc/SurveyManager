@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SurveyManager.Domain.Model.Implementation
 {
-    public abstract class EstruturaBase
+    public abstract class EstruturaBase : ModelBase
     {
         public string Nome { get; set; }
         public string Codigo { get; set; }

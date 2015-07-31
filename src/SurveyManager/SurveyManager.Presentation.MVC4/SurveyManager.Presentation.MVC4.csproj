@@ -117,6 +117,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CursoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -166,6 +167,11 @@
     <Content Include="Views\Usuarios\CreateAdministrador.cshtml" />
     <Content Include="Views\Usuarios\ListarAluno.cshtml" />
     <Content Include="Views\Usuarios\ListarAdministrador.cshtml" />
+    <Content Include="Views\Cursoes\Create.cshtml" />
+    <Content Include="Views\Cursoes\Delete.cshtml" />
+    <Content Include="Views\Cursoes\Details.cshtml" />
+    <Content Include="Views\Cursoes\Edit.cshtml" />
+    <Content Include="Views\Cursoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

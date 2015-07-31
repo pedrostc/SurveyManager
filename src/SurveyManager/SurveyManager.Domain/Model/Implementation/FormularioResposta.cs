@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SurveyManager.Domain.Model.Implementation
 {
-    public class FormularioResposta
+    public class FormularioResposta : ModelBase
     {
         public Aluno Respondente { get; set; }
         public Dictionary<Questao, Resposta> Respostas { get; private set; }
