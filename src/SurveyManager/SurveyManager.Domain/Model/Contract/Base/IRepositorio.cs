@@ -11,8 +11,6 @@ namespace SurveyManager.Domain.Model.Contract.Base
     {
         IQueryable<TEntity> ListarTodos();
         IQueryable<TEntity> Listar(Func<TEntity, bool> predicate);
-        IQueryable<Aluno> ListarAlunos();
-        IQueryable<Administrador> ListarAdms();
         TEntity Buscar(params object[] key);
         void Atualizar(TEntity obj);
         void SalvarTodos();

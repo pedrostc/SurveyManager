@@ -69,6 +69,7 @@
     <Compile Include="Model\Implementation\RespostaValida.cs" />
     <Compile Include="Model\Implementation\Usuario\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\BlocosRepositorio.cs" />
     <Compile Include="Repository\CursoRepositorio.cs" />
     <Compile Include="Repository\UsuarioRepositorio.cs" />
     <Compile Include="Services\Implementation\ServicoCriaNovaAvaliacao.cs" />

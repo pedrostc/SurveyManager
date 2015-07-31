@@ -117,7 +117,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CursoesController.cs" />
+    <Compile Include="Controllers\BlocosController.cs" />
+    <Compile Include="Controllers\CursosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -167,11 +168,14 @@
     <Content Include="Views\Usuarios\CreateAdministrador.cshtml" />
     <Content Include="Views\Usuarios\ListarAluno.cshtml" />
     <Content Include="Views\Usuarios\ListarAdministrador.cshtml" />
-    <Content Include="Views\Cursoes\Create.cshtml" />
-    <Content Include="Views\Cursoes\Delete.cshtml" />
-    <Content Include="Views\Cursoes\Details.cshtml" />
-    <Content Include="Views\Cursoes\Edit.cshtml" />
-    <Content Include="Views\Cursoes\Index.cshtml" />
+    <Content Include="Views\Cursos\Create.cshtml" />
+    <Content Include="Views\Cursos\Delete.cshtml" />
+    <Content Include="Views\Cursos\Edit.cshtml" />
+    <Content Include="Views\Cursos\Index.cshtml" />
+    <Content Include="Views\Blocos\Create.cshtml" />
+    <Content Include="Views\Blocos\Delete.cshtml" />
+    <Content Include="Views\Blocos\Edit.cshtml" />
+    <Content Include="Views\Blocos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -24,6 +24,23 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Estrutura <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                @Html.ActionLink("Cursos", "index", "Cursos")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Blocos", "index", "Blocos")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Módulos", "index", "Modulos")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Turmas", "index", "Turmas")
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuários <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>

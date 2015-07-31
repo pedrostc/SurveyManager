@@ -12,94 +12,97 @@ using SurveyManager.Domain.Model.Implementation;
 
 namespace SurveyManager.Presentation.MVC4.Controllers
 {
-    public class CursoesController : Controller
+    public class BlocosController : Controller
     {
+        private readonly BlocosRepositorio BlocosRep = new BlocosRepositorio();
         private readonly CursoRepositorio CursosRep = new CursoRepositorio();
 
-        // GET: Cursoes
+        // GET: Blocoes
         public ActionResult Index()
         {
-            return View(CursosRep.ListarTodos().ToList());
+            return View(BlocosRep.ListarTodos().ToList());
         }
 
-        // GET: Cursoes/Create
+        // GET: Blocoes/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Cursoes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Blocoes/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nome,Codigo")] Curso curso)
+        public ActionResult Create(Guid idCurso, [Bind(Include = "Id,Nome,Codigo")] Bloco bloco)
         {
             if (ModelState.IsValid)
             {
-                curso.Id = Guid.NewGuid();
+                bloco.Id = Guid.NewGuid();
+
+                Curso curso = new Curso();
+                curso.Blocos.Add(new Bloco { Id =  Guid.NewGuid(), Nome = bloco.Nome, Codigo = bloco.Codigo });
+
                 CursosRep.Adicionar(curso);
                 CursosRep.SalvarTodos();
                 return RedirectToAction("Index");
             }
 
-            return View(curso);
+            return View(bloco);
         }
 
-        // GET: Cursoes/Edit/5
+        // GET: Blocoes/Edit/5
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Curso curso = CursosRep.Buscar(id);
-            if (curso == null)
+            Bloco bloco = BlocosRep.Buscar();
+            if (bloco == null)
             {
                 return HttpNotFound();
             }
-            return View(curso);
+            return View(bloco);
         }
 
-        // POST: Cursoes/Edit/5
+        // POST: Blocoes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nome,Codigo")] Curso curso)
+        public ActionResult Edit([Bind(Include = "Id,Nome,Codigo")] Bloco bloco)
         {
             if (ModelState.IsValid)
             {
-                CursosRep.Atualizar(curso);
-                CursosRep.SalvarTodos();
+                BlocosRep.Atualizar(bloco);
+                BlocosRep.SalvarTodos();
                 return RedirectToAction("Index");
             }
-            return View(curso);
+            return View(bloco);
         }
 
-        // GET: Cursoes/Delete/5
+        // GET: Blocoes/Delete/5
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Curso curso = CursosRep.Buscar(id);
-            if (curso == null)
+            Bloco bloco = BlocosRep.Buscar(id);
+            if (bloco == null)
             {
                 return HttpNotFound();
             }
-            return View(curso);
+            return View(bloco);
         }
 
-        // POST: Cursoes/Delete/5
+        // POST: Blocoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Curso curso = CursosRep.Buscar(id);
-            CursosRep.Excluir(c => c == curso);
-            CursosRep.SalvarTodos();
+            Bloco bloco = BlocosRep.Buscar(id);
+            BlocosRep.Excluir(c => c == bloco);
+            BlocosRep.SalvarTodos();
             return RedirectToAction("Index");
         }
 
@@ -107,7 +110,7 @@ namespace SurveyManager.Presentation.MVC4.Controllers
         {
             if (disposing)
             {
-                CursosRep.Dispose();
+                BlocosRep.Dispose();
             }
             base.Dispose(disposing);
         }
