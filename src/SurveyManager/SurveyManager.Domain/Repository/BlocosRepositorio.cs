@@ -10,9 +10,6 @@ namespace SurveyManager.Domain.Repository
 {
     public class BlocosRepositorio : Repositorio<Bloco>
     {
-        public IQueryable<Curso> ListarCursos()
-        {
-            return ListarTodos().OfType<Curso>();
-        }
+        
     }
 }

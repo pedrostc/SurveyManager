@@ -1,22 +1,24 @@
 ﻿@model SurveyManager.Domain.Model.Implementation.Bloco
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "AdicionarBloco";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Editar Bloco</h2>
+<h2>Adicionar Bloco</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
+
+
+        @Html.Hidden("id", new { @ViewBag.CodCurso })
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
         <div class="form-group">
             @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -36,7 +38,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Cadastrar" class="btn btn-success" />
-                @Html.ActionLink("Voltar", "index", null, new { @class = "btn btn-default" })
+                @Html.ActionLink("Voltar", "Edit", new { id = @ViewBag.CodCurso }, new { @class = "btn btn-default" })
             </div>
         </div>
     </div>

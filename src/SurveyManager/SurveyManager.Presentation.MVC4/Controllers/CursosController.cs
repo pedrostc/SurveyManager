@@ -17,10 +17,18 @@ namespace SurveyManager.Presentation.MVC4.Controllers
         private readonly CursoRepositorio CursosRep = new CursoRepositorio();
         private readonly BlocosRepositorio BlocosRep = new BlocosRepositorio();
 
-        // GET: Cursoes
+        // GET: Cursos
         public ActionResult Index()
         {
             return View(CursosRep.ListarTodos().ToList());
+        }
+
+        // GET: Blocos
+        public ActionResult ListarBlocos(Guid? id)
+        {
+            Curso curso = CursosRep.Buscar(id);
+
+            return View(curso.Blocos.ToList());
         }
 
         // GET: Cursoes/Create
@@ -30,8 +38,6 @@ namespace SurveyManager.Presentation.MVC4.Controllers
         }
 
         // POST: Cursoes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Nome,Codigo")] Curso curso)
@@ -45,6 +51,35 @@ namespace SurveyManager.Presentation.MVC4.Controllers
             }
 
             return View(curso);
+        }
+
+        // GET: Blocos/Create
+        public ActionResult AdicionarBloco(Guid? id)
+        {
+            ViewBag.CodCurso = id;
+            return View();
+        }
+
+        // POST: Cursoes/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AdicionarBloco(Guid? id, [Bind(Include = "Id,Nome,Codigo")] Bloco bloco)
+        {
+            if (ModelState.IsValid)
+            {
+                //bloco.Id = Guid.NewGuid();
+
+                Curso curso = CursosRep.Buscar(id);
+
+                curso.Blocos.Add(new Bloco { Id = Guid.NewGuid(), Nome = bloco.Nome, Codigo = bloco.Codigo });
+
+                CursosRep.Atualizar(curso);
+                CursosRep.SalvarTodos();
+
+                return RedirectToAction("Edit", curso.Id);
+            }
+
+            return View(bloco);
         }
 
         // GET: Cursoes/Edit/5

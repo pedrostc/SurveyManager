@@ -1,15 +1,5 @@
 ﻿@model IEnumerable<SurveyManager.Domain.Model.Implementation.Bloco>
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h2>Listar Blocos</h2>
-
-<p>
-    @Html.ActionLink("Novo Bloco", "Create", null, new { @class = "btn btn-primary" })
-</p>
 <table class="table">
     <tr>
         <th>
@@ -17,9 +7,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Codigo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Curso.Id)
         </th>
         <th></th>
     </tr>
@@ -33,11 +20,8 @@
             @Html.DisplayFor(modelItem => item.Codigo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Curso.Nome)
-        </td>
-        <td>
             @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Deletar", "Delete", new { id=item.Id })
+            @Html.ActionLink("Deletar", "Delete", new { id = item.Id })
         </td>
     </tr>
 }

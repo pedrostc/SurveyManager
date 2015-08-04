@@ -176,6 +176,8 @@
     <Content Include="Views\Blocos\Delete.cshtml" />
     <Content Include="Views\Blocos\Edit.cshtml" />
     <Content Include="Views\Blocos\Index.cshtml" />
+    <Content Include="Views\Cursos\ListarBlocos.cshtml" />
+    <Content Include="Views\Cursos\AdicionarBloco.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
