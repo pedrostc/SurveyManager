@@ -10,7 +10,6 @@ namespace SurveyManager.Domain.Model.Implementation
     public class Bloco : EstruturaBase
     {
         public List<Modulo> Modulos { get; set; }
-
         public Bloco()
         {
             Modulos = new List<Modulo>();

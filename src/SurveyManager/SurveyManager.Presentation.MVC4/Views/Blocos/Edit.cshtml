@@ -1,18 +1,18 @@
-﻿@model SurveyManager.Domain.Model.Implementation.Curso
+﻿@model SurveyManager.Domain.Model.Implementation.Bloco
 
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Editar Curso</h2>
-
+<h2>Edit</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
+        <h4>Bloco</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
@@ -34,26 +34,24 @@
         </div>
 
         <div class="form-group">
-            @Html.ActionLink("Novo Bloco", "Create" ,"Blocos", new { cursoId = Model.Id }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Novo Modulo", "Create", "Modulos", new { blocoId = Model.Id }, new { @class = "btn btn-primary" })
         </div>
 
         <div class="form-group">
             @Html.Action(
             "List",
-            "Blocos",
-            new {blocos = Model.Blocos})
+            "Modulos",
+         new { modulos = Model.Modulos })
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Atualizar " class="btn btn-success" />
-                @Html.ActionLink("Voltar", "index", null, new { @class = "btn btn-default" })
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
-
     </div>
 }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

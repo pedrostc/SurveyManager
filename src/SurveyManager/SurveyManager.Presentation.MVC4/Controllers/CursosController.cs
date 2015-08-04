@@ -14,6 +14,7 @@ namespace SurveyManager.Presentation.MVC4.Controllers
 {
     public class CursosController : Controller
     {
+        private readonly Contexto db = new Contexto();
         private readonly CursoRepositorio CursosRep = new CursoRepositorio();
         private readonly BlocosRepositorio BlocosRep = new BlocosRepositorio();
 
@@ -24,11 +25,9 @@ namespace SurveyManager.Presentation.MVC4.Controllers
         }
 
         // GET: Blocos
-        public ActionResult ListarBlocos(Guid? id)
+        public ActionResult ListarBlocos(List<Bloco> blocos)
         {
-            Curso curso = CursosRep.Buscar(id);
-
-            return View(curso.Blocos.ToList());
+            return View(blocos);
         }
 
         // GET: Cursoes/Create
@@ -89,7 +88,8 @@ namespace SurveyManager.Presentation.MVC4.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Curso curso = CursosRep.Buscar(id);
+            Curso curso = db.Cursos.Find(id);
+            db.Entry(curso).Collection(c => c.Blocos).Load();
             if (curso == null)
             {
                 return HttpNotFound();
