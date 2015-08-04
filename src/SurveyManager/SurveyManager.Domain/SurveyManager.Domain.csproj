@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\Shared\ModelDbInitializer.cs" />
     <Compile Include="Model\Contract\Base\IRepositorio.cs" />
     <Compile Include="Model\Contract\Base\Repositorio.cs" />
     <Compile Include="DAO\Shared\Contexto.cs" />
