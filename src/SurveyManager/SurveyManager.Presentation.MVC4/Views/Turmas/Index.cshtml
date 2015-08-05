@@ -1,16 +1,22 @@
-﻿@model IEnumerable<SurveyManager.Domain.Model.Implementation.Modulo>
+﻿@model IEnumerable<SurveyManager.Domain.Model.Implementation.Turma>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Listar Módulos</h2>
+<h2>Listar Turmas</h2>
 
 <br />
 
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Inicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fim)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Nome)
         </th>
@@ -22,6 +28,12 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fim)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Nome)
         </td>

@@ -34,6 +34,13 @@
         </div>
 
         <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Atualizar " class="btn btn-success" />
+                @Html.ActionLink("Voltar", "index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.ActionLink("Novo Bloco", "Create" ,"Blocos", new { cursoId = Model.Id }, new { @class = "btn btn-primary" })
         </div>
 
@@ -42,13 +49,6 @@
             "List",
             "Blocos",
             new {blocos = Model.Blocos})
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Atualizar " class="btn btn-success" />
-                @Html.ActionLink("Voltar", "index", null, new { @class = "btn btn-default" })
-            </div>
         </div>
 
     </div>

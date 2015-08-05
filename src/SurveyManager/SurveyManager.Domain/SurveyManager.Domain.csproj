@@ -72,6 +72,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BlocosRepositorio.cs" />
     <Compile Include="Repository\CursoRepositorio.cs" />
+    <Compile Include="Repository\ModuloRepositorio.cs" />
+    <Compile Include="Repository\TurmaRepositorio.cs" />
     <Compile Include="Repository\UsuarioRepositorio.cs" />
     <Compile Include="Services\Implementation\ServicoCriaNovaAvaliacao.cs" />
     <Compile Include="Services\Implementation\ServicoCriarNovoFormularioResposta.cs" />

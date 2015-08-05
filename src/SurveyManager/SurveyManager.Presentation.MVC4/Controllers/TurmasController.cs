@@ -13,16 +13,15 @@ using SurveyManager.Presentation.MVC4.Models;
 
 namespace SurveyManager.Presentation.MVC4.Controllers
 {
-    public class BlocosController : Controller
+    public class TurmasController : Controller
     {
         private Contexto db = new Contexto();
-        private readonly BlocosRepositorio BlocosRep = new BlocosRepositorio();
-        private readonly CursoRepositorio CursosRep = new CursoRepositorio();
+        private readonly TurmaRepositorio TurmasRep = new TurmaRepositorio();
 
-        // GET: Blocoes
+        // GET: Turmas
         public ActionResult Index()
         {
-            return View(BlocosRep.ListarTodos().ToList());
+            return View(TurmasRep.ListarTodos().ToList());
         }
 
         public ActionResult ActionDeVoltar(string returnUrl)
@@ -33,106 +32,108 @@ namespace SurveyManager.Presentation.MVC4.Controllers
                 return null;
         }
 
-        // GET: Blocoes/Create
-        public ActionResult Create(Guid cursoId)
+
+        // GET: Turmas/Create
+        public ActionResult Create(Guid ModuloId)
         {
-            BlocoViewModel bloco = new BlocoViewModel() { CursoId = cursoId };
-            return View(bloco);
+            TurmaViewModel turma = new TurmaViewModel() { ModuloId = ModuloId };
+            return View();
         }
 
-
-        // POST: Blocoes/Create
+        // POST: Turmas/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Nome,Codigo,CursoId")] BlocoViewModel bloco)
+        public ActionResult Create([Bind(Include = "ModuloId,Inicio,Fim,Nome,Codigo")] TurmaViewModel turma)
         {
             if (ModelState.IsValid)
             {
-                Curso curso = db.Cursos.Find(bloco.CursoId);
-                Bloco blocoDb = new Bloco()
+                Modulo modulo = db.Moduloes.Find(turma.ModuloId);
+                Turma turmadb = new Turma()
                 {
                     Id = Guid.NewGuid(),
-                    Nome = bloco.Nome,
-                    Codigo = bloco.Codigo
+                    Inicio = turma.Inicio,
+                    Fim = turma.Fim,
+                    Nome = turma.Nome,
+                    Codigo = turma.Codigo
                 };
-                curso.Blocos.Add(blocoDb);
-                BlocosRep.Adicionar(blocoDb);
+                modulo.Turmas.Add(turmadb);
+                TurmasRep.Adicionar(turmadb);
                 db.SaveChanges();
+                //TurmasRep.SalvarTodos();
 
-                return RedirectToAction("Edit", "Cursos", new { id =  bloco.CursoId} );
+                return RedirectToAction("Edit", "Modulos", new { id = turma.ModuloId });
             }
 
-            return View(bloco);
+            return View(turma);
         }
 
-        // GET: Blocoes/Edit/5
+        // GET: Turmas/Edit/5
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Bloco bloco = db.Blocos.Find(id);
-            db.Entry(bloco).Collection(b => b.Modulos).Load();
-            if (bloco == null)
+            Turma turma = TurmasRep.Buscar(id);
+            if (turma == null)
             {
                 return HttpNotFound();
             }
-            return View(bloco);
+            return View(turma);
         }
 
-        // POST: Blocoes/Edit/5
+        // POST: Turmas/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nome,Codigo")] Bloco bloco)
+        public ActionResult Edit([Bind(Include = "Id,Inicio,Fim,Nome,Codigo")] Turma turma)
         {
             if (ModelState.IsValid)
             {
-                BlocosRep.Atualizar(bloco);
-                BlocosRep.SalvarTodos();
+                TurmasRep.Adicionar(turma);
+                TurmasRep.SalvarTodos();
 
                 return RedirectToAction("Index");
             }
-            return View(bloco);
+            return View(turma);
         }
 
-        // GET: Blocoes/Delete/5
+        // GET: Turmas/Delete/5
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Bloco bloco = BlocosRep.Buscar(id);
-            if (bloco == null)
+            Turma turma = TurmasRep.Buscar(id);
+            if (turma == null)
             {
                 return HttpNotFound();
             }
-            return View(bloco);
+            return View(turma);
         }
 
-        // POST: Blocoes/Delete/5
+        // POST: Turmas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Bloco bloco = BlocosRep.Buscar(id);
-            BlocosRep.Excluir(b => b == bloco);         
-            BlocosRep.SalvarTodos();
+            Turma turma = TurmasRep.Buscar(id);
+            TurmasRep.Excluir(t => t == turma);
+            TurmasRep.SalvarTodos();
 
             return RedirectToAction("Index");
         }
 
-        public ActionResult List(List<Bloco> blocos)
+        public ActionResult List(List<Turma> turmas)
         {
-            return View(blocos);
+            return View(turmas);
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                BlocosRep.Dispose();
+                TurmasRep.Dispose();
                 db.Dispose();
             }
             base.Dispose(disposing);

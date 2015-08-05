@@ -20,6 +20,8 @@ namespace SurveyManager.Domain.DAO.Shared
 
         public DbSet<Bloco> Blocos { get; set; }
 
-        public System.Data.Entity.DbSet<SurveyManager.Domain.Model.Implementation.Modulo> Moduloes { get; set; }
+        public DbSet<Modulo> Moduloes { get; set; }
+
+        public DbSet<Turma> Turmas { get; set; }
     }
 }

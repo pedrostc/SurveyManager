@@ -16,7 +16,6 @@ namespace SurveyManager.Presentation.MVC4.Controllers
     {
         private readonly Contexto db = new Contexto();
         private readonly CursoRepositorio CursosRep = new CursoRepositorio();
-        private readonly BlocosRepositorio BlocosRep = new BlocosRepositorio();
 
         // GET: Cursos
         public ActionResult Index()
@@ -50,35 +49,6 @@ namespace SurveyManager.Presentation.MVC4.Controllers
             }
 
             return View(curso);
-        }
-
-        // GET: Blocos/Create
-        public ActionResult AdicionarBloco(Guid? id)
-        {
-            ViewBag.CodCurso = id;
-            return View();
-        }
-
-        // POST: Cursoes/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AdicionarBloco(Guid? id, [Bind(Include = "Id,Nome,Codigo")] Bloco bloco)
-        {
-            if (ModelState.IsValid)
-            {
-                //bloco.Id = Guid.NewGuid();
-
-                Curso curso = CursosRep.Buscar(id);
-
-                curso.Blocos.Add(new Bloco { Id = Guid.NewGuid(), Nome = bloco.Nome, Codigo = bloco.Codigo });
-
-                CursosRep.Atualizar(curso);
-                CursosRep.SalvarTodos();
-
-                return RedirectToAction("Edit", curso.Id);
-            }
-
-            return View(bloco);
         }
 
         // GET: Cursoes/Edit/5
