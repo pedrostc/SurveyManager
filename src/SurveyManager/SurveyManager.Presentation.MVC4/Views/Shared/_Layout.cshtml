@@ -20,35 +20,41 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Estrutura <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                @Html.ActionLink("Cursos", "index", "Cursos")
-                            </li>
-                            <li>
-                                @Html.ActionLink("Blocos", "index", "Blocos")
-                            </li>
-                            <li>
-                                @Html.ActionLink("Módulos", "index", "Modulos")
-                            </li>
-                            <li>
-                                @Html.ActionLink("Turmas", "index", "Turmas")
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuários <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                @Html.ActionLink("Administrador", "ListarAdministrador", "Usuarios")
-                            </li>
-                            <li>
-                                @Html.ActionLink("Aluno", "ListarAluno", "usuarios")
-                            </li>
-                        </ul>
-                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Estrutura <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    @Html.ActionLink("Cursos", "index", "Cursos")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Blocos", "index", "Blocos")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Módulos", "index", "Modulos")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Turmas", "index", "Turmas")
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuários <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    @Html.ActionLink("Administrador", "ListarAdministrador", "Usuarios")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Aluno", "ListarAluno", "usuarios")
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="navbar-right">@Html.ActionLink("Login", "Login", "Account")</li>
                 </ul>
             </div>
         </div>
