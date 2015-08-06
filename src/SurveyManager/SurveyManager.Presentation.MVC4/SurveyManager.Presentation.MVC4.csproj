@@ -161,6 +161,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ModulosController.cs" />
+    <Compile Include="Controllers\QuestaoController.cs" />
     <Compile Include="Controllers\TurmasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -255,6 +256,10 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Questao\Create.cshtml" />
+    <Content Include="Views\Questao\Delete.cshtml" />
+    <Content Include="Views\Questao\Edit.cshtml" />
+    <Content Include="Views\Questao\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
