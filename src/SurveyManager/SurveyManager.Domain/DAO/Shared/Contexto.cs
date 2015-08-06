@@ -25,5 +25,7 @@ namespace SurveyManager.Domain.DAO.Shared
         public DbSet<Turma> Turmas { get; set; }
 
         public System.Data.Entity.DbSet<SurveyManager.Domain.Model.Implementation.Questao> Questaos { get; set; }
+
+        public System.Data.Entity.DbSet<SurveyManager.Domain.Model.Implementation.Avaliacao> Avaliacaos { get; set; }
     }
 }

@@ -22,7 +22,22 @@ namespace SurveyManager.Presentation.MVC4.Models
     }
 
     public class ApplicationRole : IdentityRole
-    { }
+    {
+        public ApplicationRole() : base() { }
+
+        public ApplicationRole(string name)
+            : base(name)
+        { }
+    }
+
+    public class ApplicationUserRole : IdentityUserRole
+    {
+        public ApplicationUserRole()
+            : base()
+        { }
+
+        public ApplicationRole Role { get; set; }
+    }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
