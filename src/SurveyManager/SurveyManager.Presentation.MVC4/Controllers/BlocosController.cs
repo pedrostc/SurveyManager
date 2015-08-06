@@ -13,6 +13,7 @@ using SurveyManager.Presentation.MVC4.Models;
 
 namespace SurveyManager.Presentation.MVC4.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class BlocosController : Controller
     {
         private Contexto db = new Contexto();

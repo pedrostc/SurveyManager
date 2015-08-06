@@ -16,10 +16,10 @@ namespace SurveyManager.Presentation.MVC4.Controllers
     {
         //private ApplicationDbContext db = new ApplicationDbContext();
         private readonly UsuarioRepositorio UsuarioRep = new UsuarioRepositorio();
-
         // GET: Usuarios
         public ActionResult Index()
         {
+            
             return View(UsuarioRep.ListarTodos().ToList());
         }
 

@@ -12,6 +12,7 @@ using SurveyManager.Domain.Model.Implementation;
 
 namespace SurveyManager.Presentation.MVC4.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class CursosController : Controller
     {
         private readonly Contexto db = new Contexto();
