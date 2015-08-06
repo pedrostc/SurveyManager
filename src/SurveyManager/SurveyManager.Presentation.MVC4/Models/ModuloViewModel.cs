@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SurveyManager.Domain.Model.Implementation
+namespace SurveyManager.Presentation.MVC4.Models
 {
-    public abstract class EstruturaBase : ModelBase
+    public class ModuloViewModel
     {
+        public Guid BlocoId { get; set; }
         public string Nome { get; set; }
         public string Codigo { get; set; }
     }

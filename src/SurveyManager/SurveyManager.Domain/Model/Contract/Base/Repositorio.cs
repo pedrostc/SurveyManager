@@ -23,16 +23,6 @@ namespace SurveyManager.Domain.Model.Contract.Base
             return ListarTodos().Where(predicate).AsQueryable();
         }
 
-        public IQueryable<Aluno> ListarAlunos()
-        {
-            return ListarTodos().OfType<Aluno>();
-        }
-
-        public IQueryable<Administrador> ListarAdms()
-        {
-            return ListarTodos().OfType<Administrador>();
-        }
-
         public TEntity Buscar(params object[] key)
         {
             return contexto.Set<TEntity>().Find(key);

@@ -1,0 +1,36 @@
+﻿@using SurveyManager.Domain.Model.Implementation
+@model IEnumerable<SurveyManager.Domain.Model.Implementation.Bloco>
+
+@{Layout = "";}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => m.Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Nome)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Bloco bloco in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(i => bloco.Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(i => bloco.Nome)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = bloco.Id }, null)
+                    |
+                    @Html.ActionLink("Excluir", "Delete", new { id = bloco.Id }, null)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

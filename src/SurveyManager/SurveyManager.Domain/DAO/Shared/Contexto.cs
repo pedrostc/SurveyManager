@@ -9,8 +9,19 @@ namespace SurveyManager.Domain.DAO.Shared
     public partial class Contexto : DbContext
     {
         public Contexto()
-            : base("name=Contexto") { }
+            : base("name=Contexto")
+        {
+            Database.SetInitializer(new ModelDbInitializer());
+        }
 
-        public System.Data.Entity.DbSet<SurveyManager.Domain.Model.Implementation.Usuario> Usuarios { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
+
+        public DbSet<Curso> Cursos { get; set; }
+
+        public DbSet<Bloco> Blocos { get; set; }
+
+        public DbSet<Modulo> Moduloes { get; set; }
+
+        public DbSet<Turma> Turmas { get; set; }
     }
 }

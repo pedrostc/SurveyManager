@@ -9,5 +9,14 @@ namespace SurveyManager.Domain.Repository
 {
     public class UsuarioRepositorio : Repositorio<Usuario>
     {
+        public IQueryable<Aluno> ListarAlunos()
+        {
+            return ListarTodos().OfType<Aluno>();
+        }
+
+        public IQueryable<Administrador> ListarAdms()
+        {
+            return ListarTodos().OfType<Administrador>();
+        }
     }
 }
