@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SurveyManager.Domain.DAO.Shared;
 using SurveyManager.Domain.Model.Implementation;
+using SurveyManager.Presentation.MVC4.Models;
 
 namespace SurveyManager.Presentation.MVC4.Controllers
 {
@@ -47,12 +48,13 @@ namespace SurveyManager.Presentation.MVC4.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Codigo,Proposito,DataInicio,DataTermino")] Avaliacao avaliacao)
+        public ActionResult Create([Bind(Include = "Id,Codigo,Proposito,DataInicio,DataTermino")] AvaliacaoViewModel avaliacao)
         {
             if (ModelState.IsValid)
             {
-                avaliacao.Id = Guid.NewGuid();
-                db.Avaliacaos.Add(avaliacao);
+                Avaliacao avaliacaoDb = avaliacao.ConverterParaModelo();
+
+                db.Avaliacaos.Add(avaliacaoDb);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -72,7 +74,10 @@ namespace SurveyManager.Presentation.MVC4.Controllers
             {
                 return HttpNotFound();
             }
-            return View(avaliacao);
+
+            AvaliacaoViewModel avaliacaoView = new AvaliacaoViewModel(avaliacao);
+
+            return View(avaliacaoView);
         }
 
         // POST: Avaliacoes/Edit/5
@@ -80,11 +85,15 @@ namespace SurveyManager.Presentation.MVC4.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Codigo,Proposito,DataInicio,DataTermino")] Avaliacao avaliacao)
+        public ActionResult Edit([Bind(Include = "Id,Codigo,Proposito,DataInicio,DataTermino")] AvaliacaoViewModel avaliacao)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(avaliacao).State = EntityState.Modified;
+                Avaliacao avaliacaoDb = db.Avaliacaos.Find(avaliacao.Id);
+
+                avaliacao.AtualizarModelo(avaliacaoDb);
+
+                db.Entry(avaliacaoDb).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -115,6 +124,62 @@ namespace SurveyManager.Presentation.MVC4.Controllers
             db.Avaliacaos.Remove(avaliacao);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult MapQuestoes(Guid id)
+        {
+            ViewData["avaliacaoId"] = id;
+            
+            Avaliacao avaliacaodb = db.Avaliacaos.Find(id);
+            db.Entry(avaliacaodb).Collection(a=>a.Questoes).Load();
+
+            return View(avaliacaodb.Questoes);
+        }
+
+        public ActionResult ListToAvaliacao(Guid AvaliacaoId, List<Questao> questoesAval)
+        {
+            ViewData["AvaliacaoId"] = AvaliacaoId;
+            List<Questao> questoesDb = db.Questaos.ToList();
+
+            foreach (var questao in questoesAval)
+            {
+                if (questoesDb.Any(q => q.Id == questao.Id))
+                {
+                    questoesDb.Remove(questoesDb.FirstOrDefault(q => q.Id == questao.Id));
+                }
+            }
+
+            return View(questoesDb);
+        }
+
+        [HttpGet]
+        public ActionResult AddToAvaliacao(Guid AvaliacaoId, Guid QuestaoId)
+        {
+            Avaliacao avaliacao = db.Avaliacaos.Find(AvaliacaoId);
+            db.Entry(avaliacao).Collection(q=>q.Questoes).Load();
+            Questao questao = db.Questaos.Find(QuestaoId);
+
+            avaliacao.AdicionarQuestao(questao);
+
+            db.Entry(avaliacao).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return View(AvaliacaoId);
+        }
+
+        [HttpGet]
+        public ActionResult RemoveFromAvaliacao(Guid AvaliacaoId, Guid QuestaoId)
+        {
+            Avaliacao avaliacao = db.Avaliacaos.Find(AvaliacaoId);
+            db.Entry(avaliacao).Collection(q => q.Questoes).Load();
+            Questao questao = db.Questaos.Find(QuestaoId);
+
+            avaliacao.RemoverQuestao(questao);
+
+            db.Entry(avaliacao).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return View(AvaliacaoId);
         }
 
         protected override void Dispose(bool disposing)

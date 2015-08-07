@@ -169,6 +169,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AvaliacaoViewModel.cs" />
     <Compile Include="Models\BlocoViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -267,6 +268,10 @@
     <Content Include="Views\Avaliacoes\Details.cshtml" />
     <Content Include="Views\Avaliacoes\Edit.cshtml" />
     <Content Include="Views\Avaliacoes\Index.cshtml" />
+    <Content Include="Views\Avaliacoes\MapQuestoes.cshtml" />
+    <Content Include="Views\Avaliacoes\ListToAvaliacao.cshtml" />
+    <Content Include="Views\Avaliacoes\AddToAvaliacao.cshtml" />
+    <Content Include="Views\Avaliacoes\RemoveFromAvaliacao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

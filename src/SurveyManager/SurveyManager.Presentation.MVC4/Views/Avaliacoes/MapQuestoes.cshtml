@@ -1,0 +1,35 @@
+﻿@using SurveyManager.Domain.Model.Implementation
+@model List<SurveyManager.Domain.Model.Implementation.Questao>
+@{
+    ViewBag.Title = "MapQuestoes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+""
+<h2>MapQuestoes</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Quest&atilde;o
+            </th>
+            <th>
+                Desassociar
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Questao questao in Model)
+        {
+            <tr>
+                <td>
+                    @questao.Texto
+                </td>
+                <td>
+                    @Html.ActionLink("Remover", "RemoveFromAvaliacao", new { AvaliacaoId = ViewData["AvaliacaoId"], QuestaoId = questao.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.Action("ListToAvaliacao", new { avaliacaoId = ViewData["AvaliacaoId"], questoesAval  = Model});
