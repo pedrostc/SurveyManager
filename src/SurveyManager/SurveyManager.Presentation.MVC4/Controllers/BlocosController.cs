@@ -23,6 +23,19 @@ namespace SurveyManager.Presentation.MVC4.Controllers
         // GET: Blocoes
         public ActionResult Index()
         {
+            //Bloco bloco = db.Blocos.Find(id);
+            //db.Entry(bloco).Collection(b => b.Modulos).Load();
+
+
+            //IQueryable<Curso> cursos = CursosRep.ListarTodos();
+
+            //var blocos = from c in cursos
+            //             select c.Blocos
+
+
+            //     CursosRep.ListarTodos()
+            //db.Entry(Curso).Collection(b => b.Blocos).Load();
+
             return View(BlocosRep.ListarTodos().ToList());
         }
 

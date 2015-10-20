@@ -2,7 +2,8 @@
 
 namespace SurveyManager.Domain.DAO.Shared
 {
-    public class ModelDbInitializer : DropCreateDatabaseAlways<Contexto>
+    //public class ModelDbInitializer : DropCreateDatabaseIfModelChanges<Contexto>
+    public class ModelDbInitializer : CreateDatabaseIfNotExists<Contexto>
     {
     }
 }

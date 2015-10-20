@@ -17,6 +17,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Codigo)
         </th>
+        <th>
+            Bloco
+        </th>
+        <th>
+            Curso
+        </th>
         <th></th>
     </tr>
 
@@ -27,6 +33,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bloco.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bloco.Curso.Nome)
         </td>
         <td>
             @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
