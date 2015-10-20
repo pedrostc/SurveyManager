@@ -1,0 +1,28 @@
+﻿@using SurveyManager.Domain.Model.Implementation
+@model List<SurveyManager.Domain.Model.Implementation.Questao>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Quest&atilde;o
+            </th>
+            <th>
+                Associar
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Questao questao in Model)
+        {
+            <tr>
+                <td>
+                    @questao.Texto
+                </td>
+                <td>
+                    @Html.ActionLink("Adicionar", "AddToAvaliacao", new { AvaliacaoId = ViewData["AvaliacaoId"], QuestaoId = questao.Id }, new { @class = "btn btn-success" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

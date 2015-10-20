@@ -1,0 +1,9 @@
+﻿@model Guid
+@{
+    ViewBag.Title = "AddToAvaliacao";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Associa&ccedil;&atilde;o efetuada com sucesso!</h2>
+
+@Html.ActionLink("Voltar", "MapQuestoes", new { id = Model })

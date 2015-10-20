@@ -1,0 +1,30 @@
+﻿@using SurveyManager.Presentation.MVC4.Models
+@model List<SurveyManager.Presentation.MVC4.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Usuários";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Usuários</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Login</th>
+            <th>Fun&ccedil;&otilde;es</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ApplicationUser user in Model)
+        {
+            <tr>
+                <td>
+                    @user.UserName
+                </td>
+                <td>
+                    @user.Roles.Select(u => u.RoleId).Aggregate((roles, r) => string.Format("{0};{1}", roles, r))
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

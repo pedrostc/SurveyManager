@@ -156,17 +156,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AvaliacoesController.cs" />
     <Compile Include="Controllers\BlocosController.cs" />
     <Compile Include="Controllers\CursosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ModulosController.cs" />
+    <Compile Include="Controllers\QuestaoController.cs" />
     <Compile Include="Controllers\TurmasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AvaliacaoViewModel.cs" />
     <Compile Include="Models\BlocoViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -255,6 +258,20 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Questao\Create.cshtml" />
+    <Content Include="Views\Questao\Delete.cshtml" />
+    <Content Include="Views\Questao\Edit.cshtml" />
+    <Content Include="Views\Questao\Index.cshtml" />
+    <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Avaliacoes\Create.cshtml" />
+    <Content Include="Views\Avaliacoes\Delete.cshtml" />
+    <Content Include="Views\Avaliacoes\Details.cshtml" />
+    <Content Include="Views\Avaliacoes\Edit.cshtml" />
+    <Content Include="Views\Avaliacoes\Index.cshtml" />
+    <Content Include="Views\Avaliacoes\MapQuestoes.cshtml" />
+    <Content Include="Views\Avaliacoes\ListToAvaliacao.cshtml" />
+    <Content Include="Views\Avaliacoes\AddToAvaliacao.cshtml" />
+    <Content Include="Views\Avaliacoes\RemoveFromAvaliacao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

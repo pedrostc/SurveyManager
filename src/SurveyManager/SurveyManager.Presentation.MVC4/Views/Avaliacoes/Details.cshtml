@@ -1,0 +1,51 @@
+﻿@model SurveyManager.Domain.Model.Implementation.Avaliacao
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Avaliacao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proposito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proposito)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataTermino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataTermino)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

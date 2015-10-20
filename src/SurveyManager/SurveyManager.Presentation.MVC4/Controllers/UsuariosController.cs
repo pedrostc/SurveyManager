@@ -6,9 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using SurveyManager.Domain.DAO.Shared;
 using SurveyManager.Domain.Repository;
 using SurveyManager.Domain.Model.Implementation;
+using SurveyManager.Presentation.MVC4.Models;
 
 namespace SurveyManager.Presentation.MVC4.Controllers
 {
@@ -16,11 +19,19 @@ namespace SurveyManager.Presentation.MVC4.Controllers
     {
         //private ApplicationDbContext db = new ApplicationDbContext();
         private readonly UsuarioRepositorio UsuarioRep = new UsuarioRepositorio();
+
+        private ApplicationUserManager userManager =
+            System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        private ApplicationDbContext ieDbContext = new ApplicationDbContext();
         // GET: Usuarios
         public ActionResult Index()
         {
-            
-            return View(UsuarioRep.ListarTodos().ToList());
+            var users = ieDbContext.Users.ToList();
+            foreach (var user in users)
+            {
+                ieDbContext.Entry(user).Collection(u => u.Roles).Load();
+            }
+            return View(users);
         }
 
         // GET: Usuarios

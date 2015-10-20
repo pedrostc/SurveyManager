@@ -1,0 +1,9 @@
+﻿@model Guid
+@{
+    ViewBag.Title = "RemoveToAvaliacao";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Desassocia&ccedil;&atilde;o efetuada com sucesso!</h2>
+
+@Html.ActionLink("Voltar", "MapQuestoes", new { id = Model }, new {})
