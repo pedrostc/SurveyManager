@@ -10,6 +10,8 @@ namespace SurveyManager.Domain.Model.Implementation
     {
         public List<Turma> Turmas { get; set; }
 
+        public virtual Bloco Bloco { get; set; }
+
         public Modulo()
         {
             Turmas = new List<Turma>();

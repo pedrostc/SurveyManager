@@ -22,22 +22,7 @@ namespace SurveyManager.Presentation.MVC4.Models
     }
 
     public class ApplicationRole : IdentityRole
-    {
-        public ApplicationRole() : base() { }
-
-        public ApplicationRole(string name)
-            : base(name)
-        { }
-    }
-
-    public class ApplicationUserRole : IdentityUserRole
-    {
-        public ApplicationUserRole()
-            : base()
-        { }
-
-        public ApplicationRole Role { get; set; }
-    }
+    { }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -55,7 +40,8 @@ namespace SurveyManager.Presentation.MVC4.Models
         public override IDbSet<ApplicationUser> Users { get; set; }
     }
 
-    public class IdentityDbInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
+    //public class IdentityDbInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
+    public class IdentityDbInitializer : CreateDatabaseIfNotExists<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
         {

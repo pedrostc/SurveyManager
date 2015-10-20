@@ -23,10 +23,6 @@ namespace SurveyManager.Domain.Model.Implementation
         {
             Questoes.Add(questao);
         }
-        public void RemoverQuestao(Questao questao)
-        {
-            Questoes.Remove(questao);
-        }
 
         public void DefinirDataInicio(DateTime dataInicio)
         {
