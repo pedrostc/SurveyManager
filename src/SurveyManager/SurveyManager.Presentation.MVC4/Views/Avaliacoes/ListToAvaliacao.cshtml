@@ -20,7 +20,7 @@
                     @questao.Texto
                 </td>
                 <td>
-                    @Html.ActionLink("Adicionar", "AddToAvaliacao", new { AvaliacaoId = ViewData["AvaliacaoId"], QuestaoId = questao.Id })
+                    @Html.ActionLink("Adicionar", "AddToAvaliacao", new { AvaliacaoId = ViewData["AvaliacaoId"], QuestaoId = questao.Id }, new { @class = "btn btn-success" })
                 </td>
             </tr>
         }

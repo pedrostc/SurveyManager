@@ -26,7 +26,7 @@
                     @questao.Texto
                 </td>
                 <td>
-                    @Html.ActionLink("Remover", "RemoveFromAvaliacao", new { AvaliacaoId = ViewData["AvaliacaoId"], QuestaoId = questao.Id })
+                    @Html.ActionLink("Remover", "RemoveFromAvaliacao", new { AvaliacaoId = ViewData["AvaliacaoId"], QuestaoId = questao.Id }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
         }
