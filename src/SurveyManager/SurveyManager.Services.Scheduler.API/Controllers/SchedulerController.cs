@@ -15,7 +15,7 @@ namespace SurveyManager.Services.Scheduler.API.Controllers
             return app.ListJobs();
         }
 
-        // GET: api/Scheduler/5
+        // GET: api/Scheduler/Job/Grupo
         public JobInfoDTO Get(string name, string groupName)
         {
             SchedulerApp app = new SchedulerApp();

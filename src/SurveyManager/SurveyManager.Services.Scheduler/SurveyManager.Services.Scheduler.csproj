@@ -66,7 +66,6 @@
     <Compile Include="DTOs\ScheduleApiCallDTO.cs" />
     <Compile Include="DTOs\SchedulerDTO.cs" />
     <Compile Include="Jobs\CallApiJob.cs" />
-    <Compile Include="Jobs\TestJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
