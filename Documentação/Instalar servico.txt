@@ -1,0 +1,14 @@
+## Instalar serviço de agendamento
+ - Abrir o ***Developer Command Prompt for VSXXXX***
+ - Até a pasta do serviço
+  - ex.: C:\Users\pedro_000\Documents\GitHub\SurveyManager\src\SurveyManager\SurveyManager.Services.Scheduler.Service\bin\Debug
+ - Executar o comando: installutil SurveyManager.Services.Scheduler.Service.exe
+ - Durante a instalação será necessário entrar as credenciais de um usuário local que possua acesso ao localDb
+ - Be Happy.
+
+
+## Desinstalar serviço de agendamento
+ - Abrir o ***Developer Command Prompt for VSXXXX***
+ - Até a pasta do serviço
+  - ex.: C:\Users\pedro_000\Documents\GitHub\SurveyManager\src\SurveyManager\SurveyManager.Services.Scheduler.Service\bin\Debug
+ - Executar o comando: installutil -u SurveyManager.Services.Scheduler.Service.exe
