@@ -1,6 +1,6 @@
 ﻿namespace SurveyManager.Services.Scheduler.DTOs
 {
-    public class ScheduleApiCallDTO
+    public class ScheduleApiCallDTO : SchedulerDTO
     {
         public string apiAddress { get; set; }
         public string apiResource { get; set; }

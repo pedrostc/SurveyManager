@@ -61,7 +61,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\SchedullerApp.cs" />
+    <Compile Include="DTOs\FindJobDTO.cs" />
+    <Compile Include="DTOs\JobInfoDTO.cs" />
     <Compile Include="DTOs\ScheduleApiCallDTO.cs" />
+    <Compile Include="DTOs\SchedulerDTO.cs" />
     <Compile Include="Jobs\CallApiJob.cs" />
     <Compile Include="Jobs\TestJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

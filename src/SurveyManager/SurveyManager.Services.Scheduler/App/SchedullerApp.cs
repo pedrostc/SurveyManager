@@ -10,11 +10,15 @@ using SurveyManager.Services.Scheduler.Jobs;
 using SurveyManager.Services.Scheduler.DTOs;
 
 using Newtonsoft.Json;
+using System.Reflection;
+using Quartz.Impl.Matchers;
 
 namespace SurveyManager.Services.Scheduler.App
 {
     public class SchedulerApp
     {
+        const string JOB_GROUP = "SurveyManager";
+
         public IScheduler sched { get; set; }
 
         public SchedulerApp()
@@ -23,55 +27,99 @@ namespace SurveyManager.Services.Scheduler.App
             sched = schedFact.GetScheduler();
         }
 
-        public void SchedulleJob()
+        private void RegisterJob(IJobDetail job, ITrigger trigger)
         {
-            // define the job and tie it to our HelloJob class
-            IJobDetail job = JobBuilder.Create<TestJob>()
-                .WithIdentity("JobTeste", "SurveyManager")
-                .Build();
-
-            // Trigger the job to run now, and then every 40 seconds
-            ITrigger trigger = TriggerBuilder.Create()
-              .WithIdentity("TriggerTeste", "SurveyManager")
-              .StartAt(new DateTimeOffset(new DateTime(2015,10,21,18,37,40)))
-              .Build();
-
             sched.ScheduleJob(job, trigger);
         }
 
-        public void RegisterOneTimeJob(IJob job, DateTime runAt)
+        private Dictionary<string, object> CreateJobDataMapDictionary(object source)
         {
-            Guid jobId = Guid.NewGuid();            
+            Dictionary<string, object> result = new Dictionary<string, object>();
+            Type sourceType = source.GetType();
+
+            foreach(PropertyInfo pInfo in sourceType.GetProperties())
+            {
+                result.Add(pInfo.Name, pInfo.GetValue(source).ToString());
+            }
+
+            return result;
         }
 
-        public void RegisterApiCallJob(ScheduleApiCallDTO dto, DateTime runAt)
+        private IJobDetail CreateJobDetail(SchedulerDTO dto)
         {
-            Guid id = Guid.NewGuid();
+            Dictionary<string, object> jobData = CreateJobDataMapDictionary(dto);
 
             IJobDetail job = JobBuilder.Create<CallApiJob>()
-                .WithIdentity(string.Format("API Call - {0}", id), "SurveyManager")
-                .UsingJobData("apiAddress", dto.apiAddress)
-                .UsingJobData("apiMethod", dto.apiMethod)
-                .UsingJobData("apiResource", dto.apiResource)
-                .UsingJobData("apiPayload", JsonConvert.SerializeObject(dto.apiPayload))
+                .WithIdentity(dto.jobName, dto.jobGroup)
                 .Build();
+            
+           foreach(KeyValuePair<string, object> data in jobData)
+            {
+                job.JobDataMap.Add(data);
+            }
 
+            return job;
+        }
+
+        private ITrigger CreateJobTrigger(SchedulerDTO dto)
+        {
             ITrigger trigger = TriggerBuilder.Create()
-              .WithIdentity(string.Format("API Call Trigger - {0}", id ), "SurveyManager")
-              .StartAt(new DateTimeOffset(runAt))
-              .Build();
+             .WithIdentity(string.Format("Trigger - {0}", dto.jobName), dto.jobGroup)
+             .StartAt(new DateTimeOffset(dto.runAt))
+             .Build();
 
-                sched.ScheduleJob(job, trigger);
+            return trigger;
         }
 
-        public List<IJob> ListJobs()
+        public void RegisterApiCallJob(ScheduleApiCallDTO dto)
         {
-            throw new NotImplementedException();
+            IJobDetail job = CreateJobDetail(dto);
+            ITrigger trigger = CreateJobTrigger(dto);
+
+            RegisterJob(job, trigger);
         }
 
-        public IJob GetJob(string jobName)
+        public List<JobInfoDTO> ListJobs()
         {
-            throw new NotImplementedException();
+            List<JobInfoDTO> result = new List<JobInfoDTO>();
+
+            IList<string> jobGroups = sched.GetJobGroupNames();
+
+            foreach (string group in jobGroups)
+            {
+                var groupMatcher = GroupMatcher<JobKey>.GroupContains(group);
+                var jobKeys = sched.GetJobKeys(groupMatcher);
+                foreach (var jobKey in jobKeys)
+                {
+                    var detail = sched.GetJobDetail(jobKey);
+                    result.Add(new JobInfoDTO()
+                    {
+                        Name = jobKey.Name,
+                        Group = jobKey.Group,
+                        Type = detail.JobType.Name
+                    });
+                }
+            }
+
+            return result;
+        }
+
+        public JobInfoDTO GetJob(FindJobDTO dto)
+        {
+            var jobMatcher = GroupMatcher<JobKey>.GroupEquals(dto.GroupName);
+            var jobKeys = sched.GetJobKeys(jobMatcher);
+
+            var key = jobKeys.FirstOrDefault(k => k.Name == dto.JobName);
+
+            var detail = sched.GetJobDetail(key);
+
+            return new JobInfoDTO()
+            {
+                Name = detail.Key.Name,
+                Group = detail.Key.Group,
+                Type = detail.JobType.Name
+            };
+
         }
 
         public void DeleteJob()
