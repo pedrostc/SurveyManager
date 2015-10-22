@@ -11,20 +11,12 @@ namespace SurveyManager.Services.Scheduler.Jobs
 {
     public class CallApiJob : IJob
     {
-        public string apiAddress { private get; set; }
-        public string apiResource { private get; set; }
-        public string apiMethod { private get; set; }
-        public string apiPayload { private get; set; }
-
         public void Execute(IJobExecutionContext context)
         {
             System.Diagnostics.EventLog appLog = new System.Diagnostics.EventLog();
-            appLog.Source = "SurveyManager";
+            appLog.Source = "SurveyManagerSchedulerJob";
 
-            var dataMap = context.JobDetail.JobDataMap;
-
-            appLog.WriteEntry(apiAddress);
-            appLog.WriteEntry(JsonConvert.SerializeObject(context.JobDetail.JobDataMap));
+            var dataMap = context.JobDetail.JobDataMap;            
             try
             {
                 RestClient client = new RestClient(dataMap["apiAddress"].ToString());
